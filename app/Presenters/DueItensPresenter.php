@@ -15,9 +15,9 @@ class DueItensPresenter extends FractalPresenter
     /**
      * Transformer
      *
-     * @return \League\Fractal\TransformerAbstract
+     * @return DueItensTransformer
      */
-    public function getTransformer()
+    public function getTransformer(): DueItensTransformer
     {
         return new DueItensTransformer();
     }
