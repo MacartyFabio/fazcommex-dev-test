@@ -1,66 +1,184 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### Pré-requisitos
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Certifique-se de ter os seguintes pré-requisitos instalados em seu sistema:
 
-## About Laravel
+- Docker: https://www.docker.com/get-docker
+- Docker Compose: https://docs.docker.com/compose/install/
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Passo 1: Clone o repositório
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Abra o terminal ou o prompt de comando.
+2. Navegue até o diretório onde deseja clonar o repositório.
+3. Execute o seguinte comando para clonar o repositório:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+   ```bash
+   git clone https://github.com/MacartyFabio/fazcommex-dev-test.git
+   ```
 
-## Learning Laravel
+4. Após a conclusão, você terá uma cópia local do repositório em seu sistema.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Passo 2: Configure as variáveis de ambiente
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Navegue até o diretório do projeto clonado.
+2. Renomeie o arquivo `.env.example` para `.env`.
+3. Abra o arquivo `.env` em um editor de texto.
+4. Defina os valores das variáveis de ambiente de acordo com sua configuração. Certifique-se de definir as seguintes variáveis:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    - `DB_CONNECTION`: O driver de conexão do banco de dados (por exemplo, `mysql`).
+    - `DB_HOST`: O endereço do host do banco de dados (por exemplo, `db`).
+    - `DB_PORT`: A porta do banco de dados (por exemplo, `3306`).
+    - `DB_DATABASE`: O nome do banco de dados.
+    - `DB_USERNAME`: O nome de usuário do banco de dados.
+    - `DB_PASSWORD`: A senha do banco de dados.
 
-## Laravel Sponsors
+5. Salve o arquivo.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Passo 3: Execute o Docker Compose
 
-### Premium Partners
+1. No terminal ou prompt de comando, navegue até o diretório do projeto clonado.
+2. Execute o seguinte comando para iniciar os contêineres do Docker:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+   ```bash
+   docker-compose up -d
+   ```
 
-## Contributing
+3. O Docker Compose baixará e configurará todas as dependências necessárias e iniciará os contêineres.
+4. Aguarde até que o processo seja concluído.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Passo 4: Execute as migrações e as seeds
 
-## Code of Conduct
+1. Após iniciar os contêineres, execute o seguinte comando para acessar o shell do contêiner da aplicação:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   ```bash
+   docker-compose exec app bash
+   ```
 
-## Security Vulnerabilities
+2. Dentro do shell do contêiner, execute as migrações do banco de dados usando o seguinte comando:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   ```bash
+   php artisan migrate
+   ```
 
-## License
+3. Quando as migrações e as seeds forem concluídas, você terá o banco de dados configurado e preenchido.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Passo 5: Acesse o aplicativo
+
+1. Abra o navegador da web.
+2. Acesse a seguinte URL:
+
+   ```
+   http://localhost:80
+   ```
+
+3. Você será redirecionado para a página inicial do aplic
+
+ativo.
+
+### Passo 6: Explorando o Projeto
+
+Agora que o aplicativo está instalado e em execução, você pode explorar as funcionalidades:
+
+- Acesse a página inicial para visualizar a lista de pedidos.
+- Clique em "Editar" para modificar um DU-E existente.
+- Clique em "Importar" para importar um DU-E.
+
+### Exemplos de json
+JSON
+```
+{
+    "numero": "22BR000396386-0",
+    "ruc": "2BR8263864420000000009999999999",
+    "identificacao": "EXBR104513",
+    "declarante_cpf_cnpj": "82638644000174",
+"declarante_razao_social": "Empresa Teste",
+    "moeda": "220",
+    "incoterm": "FCA",
+    "pais_destino": "BOL",
+    "despacho_rfb": "0000700",
+    "despacho_em_recinto": 1,
+    "despacho_recinto": "201701",
+    "embarque_rfb": "0000700",
+    "embarque_em_recinto": 1,
+    "embarque_recinto": "201701",
+    "informacoes_complementares": "EXBR104513 - 2 CONTAINERS - FCA",
+    "importador_nome": "COMPANHIA INDUSTRIAL",
+    "importador_pais": "BOL",
+    "importador_endereco": "AVENIDA CHACALTAYA NO 2141, LA PAZ, , BOLIVIA",
+    "due_itens": [
+        {
+            "item": 1,
+            "nfe_chave": "43220382638644000174550010001089351014405555",
+            "nfe_item": 1,
+            "ncm": "24013000",
+            "vmle": 12790.00,
+            "vmcv": 18490.00,
+            "peso_liquido": 19800.0,
+            "enquadramento1": "80000",
+            "enquadramento2": null,
+            "enquadramento3": null,
+            "enquadramento4": null,
+            "descricao_complementar": "RESÍDUOS DE TABACO, VIRGINIA, ESTUFA, ESTERELIZADO, TEE-RES-ST, MARCA ULT90003"
+        },
+        {
+            "item": 2,
+            "nfe_chave": "43220382638644000174550010001089361019925555",
+            "nfe_item": 1,
+            "ncm": "24013000",
+            "vmle": 77290.00,
+            "vmcv": 66490.00,
+            "peso_liquido": 19800.0,
+            "enquadramento1": "99101",
+            "enquadramento2": null,
+            "enquadramento3": null,
+            "enquadramento4": null,
+            "descricao_complementar": "RESÍDUOS DE TABACO, VIRGINIA, ESTUFA, ESTERELIZADO, TEE-RES-ST, MARCA ULT90003"
+        },
+{
+            "item": 3,
+            "nfe_chave": "43220382638644000174550010001089361019925555",
+            "nfe_item": 1,
+            "ncm": "48202000",
+            "vmle": 77290.00,
+            "vmcv": 66490.00,
+            "peso_liquido": 19800.0,
+            "enquadramento1": "81101",
+            "enquadramento2": null,
+            "enquadramento3": null,
+            "enquadramento4": null,
+            "descricao_complementar": "RESÍDUOS DE TABACO, VIRGINIA, ESTUFA, ESTERELIZADO, TEE-RES-ST, MARCA ULT90003"
+        },
+{
+            "item": 4,
+            "nfe_chave": "43220382638644000174550010001089361019925555",
+            "nfe_item": 1,
+            "ncm": "45781236",
+            "vmle": 77290.00,
+            "vmcv": 66490.00,
+            "peso_liquido": 19800.0,
+            "enquadramento1": "81101",
+            "enquadramento2": null,
+            "enquadramento3": null,
+            "enquadramento4": null,
+            "descricao_complementar": "RESÍDUOS DE TABACO, VIRGINIA, ESTUFA, ESTERELIZADO, TEE-RES-ST, MARCA ULT90003"
+        }
+    ]
+}
+
+```
+### Passo 7: Encerrando os contêineres
+
+Quando você terminar de usar o aplicativo, você pode encerrar os contêineres do Docker:
+
+1. No terminal ou prompt de comando, navegue até o diretório do projeto clonado.
+2. Execute o seguinte comando para encerrar os contêineres:
+
+   ```bash
+   docker-compose down
+   ```
+## Contribuição
+
+Contribuições são bem-vindas! Se você encontrar algum problema, tiver alguma sugestão ou quiser contribuir de alguma forma, sinta-se à vontade para abrir uma issue ou enviar um pull request.
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT. Leia o arquivo [LICENSE](LICENSE) para mais detalhes.
